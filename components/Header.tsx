@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -13,12 +14,21 @@ const Header: React.FC = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+        setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { href: '#services', text: 'خدماتنا' },
     { href: '#packages', text: 'الباقات' },
     { href: '#holiday-packages', text: 'عروض الأعياد' },
     { href: '#about', text: 'عن المركز' },
+    { href: '#team', text: 'فريقنا' },
     { href: '#testimonials', text: 'آراء العملاء' },
     { href: '#faq', text: 'الأسئلة الشائعة' },
     { href: '#contact', text: 'فروعنا' },
@@ -28,19 +38,19 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="bg-black/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex-shrink-0">
               <a href="#" className="flex items-center space-x-2 rtl:space-x-reverse">
-                <img className="h-12 w-auto" src="https://i.postimg.cc/GmZvBrRd/MASA-SPA.png" alt="Masa Center Logo" />
+                <img className="h-12 w-auto transition-transform duration-300 hover:scale-110" src="https://i.postimg.cc/GmZvBrRd/MASA-SPA.png" alt="Masa Center Logo" />
                 <span className="text-white font-bold text-xl">مركز ماسة</span>
               </a>
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4 rtl:space-x-reverse">
+              <div className="ml-10 flex items-baseline space-x-1 rtl:space-x-reverse">
                 {navLinks.map(link => (
-                  <a key={link.href} href={link.href} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                  <a key={link.href} href={link.href} className="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-amber-400 after:transition-all after:duration-300 hover:after:w-1/2 hover:after:left-0">
                     {link.text}
                   </a>
                 ))}
@@ -68,7 +78,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 transition-opacity duration-300 ease-in-out md:hidden ${isOpen ? 'opacity-100 visible bg-black/95 backdrop-blur-sm' : 'opacity-0 invisible'}`}
+        className={`fixed inset-0 z-40 transition-opacity duration-300 ease-in-out md:hidden ${isOpen ? 'opacity-100 visible bg-black/95 backdrop-blur-lg' : 'opacity-0 invisible'}`}
         onClick={closeMenu}
         aria-hidden={!isOpen}
       >
@@ -94,4 +104,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

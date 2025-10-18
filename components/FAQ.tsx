@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { faqs } from '../constants';
 import { FAQItem } from '../types';
 
@@ -8,7 +8,7 @@ interface FAQItemProps {
   onClick: () => void;
 }
 
-const FaqItemComponent: React.FC<FAQItemProps> = ({ faq, isOpen, onClick }) => {
+const FaqItemComponent: React.FC<FAQItemProps> = React.memo(({ faq, isOpen, onClick }) => {
   return (
     <div className="border-b border-gray-700">
       <button
@@ -33,17 +33,42 @@ const FaqItemComponent: React.FC<FAQItemProps> = ({ faq, isOpen, onClick }) => {
       </div>
     </div>
   );
-};
+});
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   const handleItemClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-20 bg-black">
+    <section ref={sectionRef} id="faq" className={`py-16 sm:py-20 bg-black section-animate ${isVisible ? 'is-visible' : ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">الأسئلة الشائعة</h2>
@@ -66,4 +91,4 @@ const FAQ: React.FC = () => {
   );
 };
 
-export default FAQ;
+export default React.memo(FAQ);

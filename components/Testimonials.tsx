@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const testimonials = [
   {
@@ -24,7 +24,7 @@ interface Testimonial {
   service: string;
 }
 
-const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }) => (
+const TestimonialCard: React.FC<{ testimonial: Testimonial }> = React.memo(({ testimonial }) => (
   <div className="bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col text-center h-full">
     <svg className="w-10 h-10 text-amber-500 mb-4 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
       <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
@@ -35,12 +35,38 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
       <p className="text-sm text-amber-400">{testimonial.service}</p>
     </div>
   </div>
-);
+));
 
 
 const Testimonials: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   return (
-    <section id="testimonials" className="py-16 sm:py-20 bg-gray-900">
+    <section ref={sectionRef} id="testimonials" className={`py-16 sm:py-20 bg-gray-900 section-animate ${isVisible ? 'is-visible' : ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">ماذا يقول عملاؤنا؟</h2>
@@ -67,4 +93,4 @@ const Testimonials: React.FC = () => {
   );
 };
 
-export default Testimonials;
+export default React.memo(Testimonials);

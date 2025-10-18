@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const mainBranch = {
   name: 'الفرع الرئيسي - الدقي',
@@ -19,9 +19,46 @@ const otherServiceAreas = [
   'الطالبية', 'العمرانية', 'المريوطية', 'الكيت كات', 'الوراق', 'إمبابة', 'أرض اللواء'
 ];
 
+const PhoneIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+    </svg>
+);
+
+const WhatsAppIcon = () => (
+   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.687-1.475L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.398 1.908 6.166l-.36 1.323 1.331-.353z"/></svg>
+);
+
+
 const LocationAndBranches: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   return (
-    <section id="contact" className="py-16 sm:py-20 bg-black">
+    <section ref={sectionRef} id="contact" className={`py-16 sm:py-20 bg-black section-animate ${isVisible ? 'is-visible' : ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">فرعنا الرئيسي ومناطق الخدمة</h2>
@@ -34,18 +71,29 @@ const LocationAndBranches: React.FC = () => {
           <div className="lg:col-span-2 bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col">
             <div className="flex-grow">
                 <h3 className="text-2xl font-bold text-amber-400 mb-4">{mainBranch.name}</h3>
-                <div className="flex items-start mb-4">
+                <div className="flex items-start mb-6">
                     <svg className="w-6 h-6 text-gray-400 mt-1 ml-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     <p className="text-gray-300">{mainBranch.address}</p>
                 </div>
-                <div className="flex items-start text-left" dir="ltr">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                    <div className="flex flex-col">
-                      {mainBranch.phones.map((phone) => (
-                          <a key={phone} href={`tel:${phone.replace(/-/g, '')}`} className="text-gray-300 hover:text-amber-400 transition-colors text-lg">
-                          {phone}
-                          </a>
-                      ))}
+                <div className="border-t border-gray-700 pt-6">
+                    <div className="space-y-4" dir="ltr">
+                      {mainBranch.phones.map((phone) => {
+                          const telLink = `tel:${phone.replace(/-/g, '')}`;
+                          const waLink = `https://wa.me/20${phone.replace(/-/g, '').substring(1)}`;
+                          return (
+                            <div key={phone} className="flex items-center justify-between">
+                                <span className="text-gray-300 text-lg tracking-wider">{phone}</span>
+                                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                                <a href={waLink} target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300 transition-colors" aria-label={`WhatsApp ${phone}`}>
+                                    <WhatsAppIcon />
+                                </a>
+                                <a href={telLink} className="text-amber-400 hover:text-amber-300 transition-colors" aria-label={`Call ${phone}`}>
+                                    <PhoneIcon />
+                                </a>
+                                </div>
+                            </div>
+                          );
+                      })}
                     </div>
                 </div>
             </div>
@@ -92,4 +140,4 @@ const LocationAndBranches: React.FC = () => {
   );
 };
 
-export default LocationAndBranches;
+export default React.memo(LocationAndBranches);
