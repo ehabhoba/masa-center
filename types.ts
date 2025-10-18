@@ -1,4 +1,3 @@
-// FIX: Removed the self-import of 'Service' which was causing a conflict with the local declaration.
 export interface Service {
   name: string;
   description: string;
