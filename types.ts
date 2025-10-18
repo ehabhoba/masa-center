@@ -2,7 +2,6 @@ export interface Service {
   name: string;
   description: string;
   duration: string;
-  price: string;
   imageUrl?: string;
 }
 
@@ -15,9 +14,15 @@ export interface Package {
   name: string;
   description: string;
   duration: string;
-  originalPrice: string;
-  discountedPrice: string;
   imageUrl?: string;
+}
+
+export interface HolidayPackage {
+  name: string;
+  description: string;
+  duration: string;
+  servicesIncluded: string[];
+  imageUrl: string;
 }
 
 export interface FAQItem {

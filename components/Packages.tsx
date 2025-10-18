@@ -16,11 +16,7 @@ const PackageCard: React.FC<{ pkg: Package, onBookServiceClick: (serviceName:str
                 <span>{pkg.duration}</span>
             </div>
         </div>
-        <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mt-4 gap-4">
-            <div className="text-center sm:text-left">
-                <span className="text-xl font-bold text-gray-400 line-through">{pkg.originalPrice}</span>
-                <p className="text-3xl font-bold text-green-400">{pkg.discountedPrice}</p>
-            </div>
+        <div className="flex items-center justify-end mt-4">
             <button 
                 onClick={() => onBookServiceClick(pkg.name)}
                 className="w-full sm:w-auto bg-amber-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors duration-300 transform hover:scale-105">

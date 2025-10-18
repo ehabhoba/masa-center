@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Packages from './components/Packages';
+import HolidayPackages from './components/HolidayPackages';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -36,6 +37,7 @@ function App() {
         <Hero onBookNowClick={handleBookNowClick} />
         <Services onBookServiceClick={handleBookServiceClick} />
         <Packages onBookServiceClick={handleBookServiceClick} />
+        <HolidayPackages onBookServiceClick={handleBookServiceClick} />
         <About />
         <Testimonials />
         <FAQ />

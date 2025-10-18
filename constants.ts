@@ -1,4 +1,4 @@
-import { ServiceCategory, Package, FAQItem } from './types';
+import { ServiceCategory, Package, FAQItem, HolidayPackage } from './types';
 
 export const serviceCategories: ServiceCategory[] = [
   {
@@ -8,25 +8,21 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'مساج استرخائي',
         description: 'جلسة مساج تساعد على تخفيف التوتر والإرهاق.',
         duration: '60 دقيقة',
-        price: '400 جنيه مصرى',
       },
       {
         name: 'مساج سويدي',
         description: 'مساج علاجي لتحسين الدورة الدموية وإرخاء العضلات.',
         duration: '75 دقيقة',
-        price: '500 جنيه مصرى',
       },
       {
         name: 'مساج الأحجار الساخنة',
         description: 'استخدام الأحجار البازلتية الساخنة لإراحة أعمق للعضلات.',
         duration: '90 دقيقة',
-        price: '600 جنيه مصرى',
       },
       {
         name: 'مساج رياضي',
         description: 'مثالي للرياضيين لتخفيف آلام العضلات وتحسين الأداء.',
         duration: '60 دقيقة',
-        price: '550 جنيه مصرى',
       },
     ],
   },
@@ -37,13 +33,11 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'حمام مغربي تقليدي',
         description: 'تجربة الحمام المغربي الأصيل لتنظيف وتقشير البشرة.',
         duration: '90 دقيقة',
-        price: '700 جنيه مصرى',
       },
       {
         name: 'حمام مغربي ملكي',
         description: 'يشمل أقنعة طبيعية وزيوت عطرية لتغذية البشرة بعمق.',
         duration: '120 دقيقة',
-        price: '1000 جنيه مصرى',
       },
     ],
   },
@@ -54,13 +48,11 @@ export const serviceCategories: ServiceCategory[] = [
         name: 'تنظيف بشرة عميق',
         description: 'جلسة متكاملة لتنظيف البشرة وإزالة الشوائب.',
         duration: '75 دقيقة',
-        price: '500 جنيه مصرى',
       },
       {
         name: 'بديكير ومانيكير',
         description: 'عناية كاملة باليدين والقدمين لمظهر صحي وجذاب.',
         duration: '60 دقيقة',
-        price: '300 جنيه مصرى',
       },
     ],
   },
@@ -71,24 +63,36 @@ export const packages: Package[] = [
     name: 'باقة الاسترخاء الكامل',
     description: 'تشمل جلسة مساج استرخائي، حمام مغربي تقليدي، وبديكير ومانيكير لتجربة راحة متكاملة.',
     duration: '3.5 ساعات',
-    originalPrice: '1400 جنيه',
-    discountedPrice: '1100 جنيه',
   },
   {
     name: 'باقة الحيوية والنشاط',
     description: 'مثالية لاستعادة الطاقة. تشمل مساج رياضي متخصص وجلسة تنظيف بشرة عميق.',
     duration: '2.5 ساعات',
-    originalPrice: '1050 جنيه',
-    discountedPrice: '850 جنيه',
   },
   {
     name: 'الباقة الملكية الفاخرة',
     description: 'تجربة ملوكية لا مثيل لها. تشمل حمام مغربي ملكي، مساج بالأحجار الساخنة، وعناية فائقة بالجسم.',
     duration: '4 ساعات',
-    originalPrice: '1600 جنيه',
-    discountedPrice: '1300 جنيه',
   },
 ];
+
+export const holidayPackages: HolidayPackage[] = [
+  {
+    name: 'باقة العيد للاسترخاء',
+    description: 'احتفل بالعيد مع تجربة استرخاء متكاملة تمنحك النشاط والحيوية. مصممة خصيصاً لتجديد طاقتك.',
+    duration: '3 ساعات',
+    servicesIncluded: ['حمام مغربي تقليدي', 'مساج استرخائي', 'ماسك الذهب للوجه'],
+    imageUrl: 'https://i.postimg.cc/k4zZ0f4X/holiday1.jpg',
+  },
+  {
+    name: 'عرض رأس السنة للتجديد',
+    description: 'استقبل العام الجديد بإطلالة متجددة وشعور بالانتعاش. باقة فاخرة للعناية الكاملة بالجسم والبشرة.',
+    duration: '4 ساعات',
+    servicesIncluded: ['حمام مغربي ملكي', 'مساج بالأحجار الساخنة', 'تنظيف بشرة عميق'],
+    imageUrl: 'https://i.postimg.cc/T3j2wZ0M/holiday2.jpg',
+  },
+];
+
 
 export const faqs: FAQItem[] = [
   {

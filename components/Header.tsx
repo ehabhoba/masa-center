@@ -17,6 +17,7 @@ const Header: React.FC = () => {
   const navLinks = [
     { href: '#services', text: 'خدماتنا' },
     { href: '#packages', text: 'الباقات' },
+    { href: '#holiday-packages', text: 'عروض الأعياد' },
     { href: '#about', text: 'عن المركز' },
     { href: '#testimonials', text: 'آراء العملاء' },
     { href: '#faq', text: 'الأسئلة الشائعة' },
@@ -66,17 +67,28 @@ const Header: React.FC = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black z-40 transition-opacity duration-300 ease-in-out md:hidden ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+      <div
+        className={`fixed inset-0 z-40 transition-opacity duration-300 ease-in-out md:hidden ${isOpen ? 'opacity-100 visible bg-black/95 backdrop-blur-sm' : 'opacity-0 invisible'}`}
         onClick={closeMenu}
+        aria-hidden={!isOpen}
       >
-        <div className="flex flex-col items-center justify-center h-full">
-          {navLinks.map(link => (
-            <a key={link.href} href={link.href} onClick={closeMenu} className="text-gray-300 hover:text-amber-400 block px-3 py-4 rounded-md text-2xl font-medium transition-colors">
+        <nav
+          className="flex flex-col items-center justify-center h-full"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {navLinks.map((link, index) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={closeMenu}
+              className={`block text-3xl font-medium text-gray-200 hover:text-amber-400 py-4 transform transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}
+              style={{ transitionDelay: `${isOpen ? index * 75 + 150 : 0}ms` }}
+              tabIndex={isOpen ? 0 : -1}
+            >
               {link.text}
             </a>
           ))}
-        </div>
+        </nav>
       </div>
     </>
   );

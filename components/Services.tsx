@@ -14,13 +14,10 @@ const ServiceCard: React.FC<{ service: Service, onBookServiceClick: (serviceName
         <p className="text-gray-400 mb-4 text-sm">{service.description}</p>
       </div>
       <div className="mt-auto pt-4 border-t border-gray-700">
-          <div className="flex justify-between items-center text-sm text-gray-300 mb-4">
+          <div className="flex justify-start items-center text-sm text-gray-300 mb-4">
               <span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   {service.duration}
-              </span>
-              <span className="font-bold text-amber-400 text-base">
-                  {service.price}
               </span>
           </div>
           <button 
