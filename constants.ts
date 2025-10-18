@@ -82,14 +82,14 @@ export const holidayPackages: HolidayPackage[] = [
     description: 'احتفل بالعيد مع تجربة استرخاء متكاملة تمنحك النشاط والحيوية. مصممة خصيصاً لتجديد طاقتك.',
     duration: '3 ساعات',
     servicesIncluded: ['حمام مغربي تقليدي', 'مساج استرخائي', 'ماسك الذهب للوجه'],
-    imageUrl: 'https://i.postimg.cc/k4zZ0f4X/holiday1.jpg',
+    imageUrl: 'https://i.postimg.cc/y8PZp23p/eid-package.jpg',
   },
   {
     name: 'عرض رأس السنة للتجديد',
     description: 'استقبل العام الجديد بإطلالة متجددة وشعور بالانتعاش. باقة فاخرة للعناية الكاملة بالجسم والبشرة.',
     duration: '4 ساعات',
     servicesIncluded: ['حمام مغربي ملكي', 'مساج بالأحجار الساخنة', 'تنظيف بشرة عميق'],
-    imageUrl: 'https://i.postimg.cc/T3j2wZ0M/holiday2.jpg',
+    imageUrl: 'https://i.postimg.cc/RhJ8c2pY/new-year-package.jpg',
   },
 ];
 
