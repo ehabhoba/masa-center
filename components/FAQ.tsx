@@ -43,10 +43,10 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-black">
+    <section id="faq" className="py-16 sm:py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">الأسئلة الشائعة</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">الأسئلة الشائعة</h2>
           <p className="mt-4 text-lg text-gray-300">
             نجيب على استفساراتكم لنوفر لكم كل المعلومات التي تحتاجونها.
           </p>

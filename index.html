@@ -52,6 +52,15 @@
       .animate-fade-in-down { animation: fade-in-down 0.8s ease-out forwards; }
       .animate-fade-in-up { animation: fade-in-up 0.8s ease-out 0.4s forwards; opacity: 0; }
       .animate-bounce-in { animation: bounce-in 0.8s ease-out 0.8s forwards; opacity: 0; }
+      
+      /* Helper class to hide scrollbars */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
     </style>
   <script type="importmap">
 {

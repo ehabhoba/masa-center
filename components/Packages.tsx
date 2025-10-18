@@ -16,14 +16,14 @@ const PackageCard: React.FC<{ pkg: Package, onBookServiceClick: (serviceName:str
                 <span>{pkg.duration}</span>
             </div>
         </div>
-        <div className="flex items-end justify-between mt-4">
-            <div className="text-left">
+        <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mt-4 gap-4">
+            <div className="text-center sm:text-left">
                 <span className="text-xl font-bold text-gray-400 line-through">{pkg.originalPrice}</span>
                 <p className="text-3xl font-bold text-green-400">{pkg.discountedPrice}</p>
             </div>
             <button 
                 onClick={() => onBookServiceClick(pkg.name)}
-                className="bg-amber-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors duration-300 transform hover:scale-105">
+                className="w-full sm:w-auto bg-amber-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors duration-300 transform hover:scale-105">
                 احجز هذه الباقة
             </button>
         </div>
@@ -33,10 +33,10 @@ const PackageCard: React.FC<{ pkg: Package, onBookServiceClick: (serviceName:str
 
 const Packages: React.FC<PackagesProps> = ({ onBookServiceClick }) => {
   return (
-    <section id="packages" className="py-20 bg-gray-900">
+    <section id="packages" className="py-16 sm:py-20 bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">الباقات والعروض الخاصة</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">الباقات والعروض الخاصة</h2>
           <p className="mt-4 text-lg text-gray-300">استمتع بتجارب متكاملة بأسعار لا تقاوم.</p>
         </div>
 
