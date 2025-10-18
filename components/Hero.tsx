@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface HeroProps {
@@ -7,18 +6,10 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
   return (
-    <section className="relative h-[70vh] md:h-[90vh] overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
-        style={{ objectFit: 'cover', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-      >
-        <source src="https://videos.pexels.com/video-files/7572733/7572733-hd_1920_1080_25fps.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <section 
+      className="relative h-[70vh] md:h-[90vh] bg-cover bg-center"
+      style={{ backgroundImage: 'url(https://i.postimg.cc/NjrHvVHN/Pink-Beauty-Wellness-Spa-Facebook-Cover.jpg)' }}
+    >
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight drop-shadow-lg animate-fade-in-down">

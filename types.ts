@@ -17,5 +17,10 @@ export interface Package {
   duration: string;
   originalPrice: string;
   discountedPrice: string;
-  imageUrl: string;
+  imageUrl?: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
 }

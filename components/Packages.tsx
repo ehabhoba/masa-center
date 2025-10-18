@@ -7,34 +7,25 @@ interface PackagesProps {
 }
 
 const PackageCard: React.FC<{ pkg: Package, onBookServiceClick: (serviceName:string) => void }> = ({ pkg, onBookServiceClick }) => (
-    <div className="bg-gray-800 rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row group border border-amber-800/50">
-        <div className="md:w-1/3 overflow-hidden">
-            <img 
-                src={pkg.imageUrl} 
-                alt={pkg.name} 
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out"
-            />
+    <div className="bg-gray-800 rounded-lg shadow-2xl overflow-hidden group border border-amber-800/50 p-6 flex flex-col justify-between">
+        <div>
+            <h3 className="text-2xl font-bold text-amber-400 mb-3">{pkg.name}</h3>
+            <p className="text-gray-300 mb-4">{pkg.description}</p>
+             <div className="flex items-center text-sm text-gray-400 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{pkg.duration}</span>
+            </div>
         </div>
-        <div className="md:w-2/3 p-6 flex flex-col justify-between">
-            <div>
-                <h3 className="text-2xl font-bold text-amber-400 mb-3">{pkg.name}</h3>
-                <p className="text-gray-300 mb-4">{pkg.description}</p>
-                 <div className="flex items-center text-sm text-gray-400 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span>{pkg.duration}</span>
-                </div>
+        <div className="flex items-end justify-between mt-4">
+            <div className="text-left">
+                <span className="text-xl font-bold text-gray-400 line-through">{pkg.originalPrice}</span>
+                <p className="text-3xl font-bold text-green-400">{pkg.discountedPrice}</p>
             </div>
-            <div className="flex items-end justify-between mt-4">
-                <div className="text-left">
-                    <span className="text-xl font-bold text-gray-400 line-through">{pkg.originalPrice}</span>
-                    <p className="text-3xl font-bold text-green-400">{pkg.discountedPrice}</p>
-                </div>
-                <button 
-                    onClick={() => onBookServiceClick(pkg.name)}
-                    className="bg-amber-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors duration-300 transform hover:scale-105">
-                    احجز هذه الباقة
-                </button>
-            </div>
+            <button 
+                onClick={() => onBookServiceClick(pkg.name)}
+                className="bg-amber-500 text-black font-bold py-3 px-6 rounded-lg hover:bg-amber-400 transition-colors duration-300 transform hover:scale-105">
+                احجز هذه الباقة
+            </button>
         </div>
     </div>
 );

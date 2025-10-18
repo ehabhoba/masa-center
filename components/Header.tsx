@@ -6,9 +6,9 @@ const Header: React.FC = () => {
   const navLinks = [
     { href: '#services', text: 'خدماتنا' },
     { href: '#packages', text: 'الباقات' },
-    { href: '#gallery', text: 'المعرض' },
     { href: '#about', text: 'عن المركز' },
     { href: '#testimonials', text: 'آراء العملاء' },
+    { href: '#faq', text: 'الأسئلة الشائعة' },
     { href: '#contact', text: 'فروعنا' },
   ];
 

@@ -1,4 +1,4 @@
-import { ServiceCategory, Package } from './types';
+import { ServiceCategory, Package, FAQItem } from './types';
 
 export const serviceCategories: ServiceCategory[] = [
   {
@@ -73,7 +73,6 @@ export const packages: Package[] = [
     duration: '3.5 ساعات',
     originalPrice: '1400 جنيه',
     discountedPrice: '1100 جنيه',
-    imageUrl: 'https://i.postimg.cc/k47tVqjP/ai-package-relax.jpg',
   },
   {
     name: 'باقة الحيوية والنشاط',
@@ -81,7 +80,6 @@ export const packages: Package[] = [
     duration: '2.5 ساعات',
     originalPrice: '1050 جنيه',
     discountedPrice: '850 جنيه',
-    imageUrl: 'https://i.postimg.cc/t4G258zG/ai-package-vitality.jpg',
   },
   {
     name: 'الباقة الملكية الفاخرة',
@@ -89,6 +87,28 @@ export const packages: Package[] = [
     duration: '4 ساعات',
     originalPrice: '1600 جنيه',
     discountedPrice: '1300 جنيه',
-    imageUrl: 'https://i.postimg.cc/d11GqGjQ/ai-package-royal.jpg',
+  },
+];
+
+export const faqs: FAQItem[] = [
+  {
+    question: 'كيف يمكنني حجز موعد؟',
+    answer: 'يمكنك حجز موعدك بسهولة عن طريق الضغط على زر "حجز هذه الخدمة" أو "احجز هذه الباقة"، وسيتم تحويلك مباشرة إلى تطبيق واتساب للتواصل مع فريقنا وتأكيد الموعد المناسب لك.',
+  },
+  {
+    question: 'ما هي طرق الدفع المتاحة؟',
+    answer: 'نقبل الدفع النقدي في المركز، بالإضافة إلى إمكانية الدفع عبر المحافظ الإلكترونية. يرجى الاستفسار عن التفاصيل عند الحجز.',
+  },
+  {
+    question: 'هل يجب أن أستعد بشكل خاص قبل الجلسة؟',
+    answer: 'نوصي بالوصول قبل موعدك بـ 10 دقائق للاسترخاء. من الأفضل تجنب تناول وجبة دسمة قبل جلسة المساج مباشرة. فريقنا سيزودك بكافة الإرشادات اللازمة عند وصولك.',
+  },
+  {
+    question: 'ما هي سياسة الإلغاء أو تعديل المواعيد؟',
+    answer: 'نقدر وقتك ووقت أخصائيينا. في حال رغبتك في إلغاء أو تعديل الموعد، يرجى إبلاغنا قبل 24 ساعة على الأقل من الموعد المحدد لتجنب أي رسوم.',
+  },
+  {
+    question: 'هل جميع الأخصائيين لديكم معتمدون؟',
+    answer: 'نعم بكل تأكيد. يضم فريقنا نخبة من الأخصائيين المحترفين والمعتمدين الذين يمتلكون خبرة واسعة في مجال المساج والعناية بالجسم لضمان تقديم خدمة عالية الجودة وآمنة.',
   },
 ];

@@ -3,9 +3,9 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Packages from './components/Packages';
-import Gallery from './components/Gallery';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 import LocationAndBranches from './components/LocationAndBranches';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
@@ -36,9 +36,9 @@ function App() {
         <Hero onBookNowClick={handleBookNowClick} />
         <Services onBookServiceClick={handleBookServiceClick} />
         <Packages onBookServiceClick={handleBookServiceClick} />
-        <Gallery />
         <About />
         <Testimonials />
+        <FAQ />
         <LocationAndBranches />
       </main>
       <Footer />
