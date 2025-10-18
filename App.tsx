@@ -16,15 +16,20 @@ import BackToTopButton from './components/BackToTopButton';
 import Preloader from './components/Preloader';
 import WhyChooseUs from './components/WhyChooseUs';
 import GiftVouchers from './components/GiftVouchers';
-import Team from './components/Team'; // Import the new component
-import { Service } from './types';
+import Team from './components/Team';
+import Membership from './components/Membership';
+import Blog from './components/Blog'; // Import the new component
+import ArticleModal from './components/ArticleModal'; // Import the new component
+import { Service, Article } from './types';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false); // New state for article modal
   const [selectedService, setSelectedService] = useState('');
   const [serviceForDetail, setServiceForDetail] = useState<Service | null>(null);
+  const [articleForDetail, setArticleForDetail] = useState<Article | null>(null); // New state for article detail
   
   const appRef = useRef<HTMLDivElement>(null);
 
@@ -83,6 +88,16 @@ function App() {
     setTimeout(() => setServiceForDetail(null), 300);
   };
 
+  const handleViewArticleDetails = (article: Article) => {
+    setArticleForDetail(article);
+    setIsArticleModalOpen(true);
+  };
+
+  const handleCloseArticleModal = () => {
+    setIsArticleModalOpen(false);
+    setTimeout(() => setArticleForDetail(null), 300);
+  };
+
   return (
     <>
       <Preloader isLoading={isLoading} />
@@ -98,10 +113,12 @@ function App() {
           <Packages onBookServiceClick={handleBookServiceClick} />
           <HolidayPackages onBookServiceClick={handleBookServiceClick} />
           <GiftVouchers onBookServiceClick={handleBookServiceClick} />
+          <Membership onBookServiceClick={handleBookServiceClick} />
           <About />
           <WhyChooseUs />
           <Team />
           <Testimonials />
+          <Blog onViewArticleDetails={handleViewArticleDetails} />
           <FAQ />
           <LocationAndBranches />
         </main>
@@ -118,6 +135,11 @@ function App() {
           onClose={handleCloseDetailModal}
           service={serviceForDetail}
           onBookServiceClick={handleBookServiceClick}
+        />
+        <ArticleModal
+          isOpen={isArticleModalOpen}
+          onClose={handleCloseArticleModal}
+          article={articleForDetail}
         />
       </div>
     </>
