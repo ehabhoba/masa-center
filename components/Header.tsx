@@ -24,19 +24,34 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { href: '#services', text: 'خدماتنا' },
-    { href: '#packages', text: 'الباقات' },
-    { href: '#holiday-packages', text: 'عروض الأعياد' },
-    { href: '#membership', text: 'النادي المميز' },
-    { href: '#about', text: 'عن المركز' },
-    { href: '#team', text: 'فريقنا' },
-    { href: '#blog', text: 'المدونة' },
-    { href: '#testimonials', text: 'آراء العملاء' },
-    { href: '#faq', text: 'الأسئلة الشائعة' },
-    { href: '#contact', text: 'فروعنا' },
+    { href: 'services', text: 'خدماتنا' },
+    { href: 'packages', text: 'الباقات' },
+    { href: 'holiday-packages', text: 'عروض الأعياد' },
+    { href: 'membership', text: 'النادي المميز' },
+    { href: 'about', text: 'عن المركز' },
+    { href: 'team', text: 'فريقنا' },
+    { href: 'blog', text: 'المدونة' },
+    { href: 'testimonials', text: 'آراء العملاء' },
+    { href: 'faq', text: 'الأسئلة الشائعة' },
+    { href: 'contact', text: 'فروعنا' },
   ];
 
   const closeMenu = () => setIsOpen(false);
+
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    event.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    closeMenu();
+  };
+  
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
 
   return (
     <>
@@ -44,7 +59,7 @@ const Header: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex-shrink-0">
-              <a href="#" className="flex items-center space-x-2 rtl:space-x-reverse">
+              <a href="/" onClick={handleLogoClick} className="flex items-center space-x-2 rtl:space-x-reverse">
                 <img className="h-12 w-auto transition-transform duration-300 hover:scale-110" src="https://i.postimg.cc/GmZvBrRd/MASA-SPA.png" alt="Masa Center Logo" />
                 <span className="text-white font-bold text-xl">مركز ماسة</span>
               </a>
@@ -52,7 +67,7 @@ const Header: React.FC = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-1 rtl:space-x-reverse">
                 {navLinks.map(link => (
-                  <a key={link.href} href={link.href} className="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-amber-400 after:transition-all after:duration-300 hover:after:w-1/2 hover:after:left-0">
+                  <a key={link.href} href={`/${link.href}`} onClick={(e) => handleNavClick(e, link.href)} className="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-amber-400 after:transition-all after:duration-300 hover:after:w-1/2 hover:after:left-0">
                     {link.text}
                   </a>
                 ))}
@@ -91,8 +106,8 @@ const Header: React.FC = () => {
           {navLinks.map((link, index) => (
             <a
               key={link.href}
-              href={link.href}
-              onClick={closeMenu}
+              href={`/${link.href}`}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`block text-3xl font-medium text-gray-200 hover:text-amber-400 py-4 transform transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}
               style={{ transitionDelay: `${isOpen ? index * 75 + 150 : 0}ms` }}
               tabIndex={isOpen ? 0 : -1}

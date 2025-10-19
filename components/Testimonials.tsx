@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 const testimonials = [
   {
@@ -40,7 +40,9 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = React.memo(({ te
 
 const Testimonials: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,6 +66,38 @@ const Testimonials: React.FC = () => {
       }
     };
   }, []);
+  
+  const handleScroll = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = container.scrollWidth / testimonials.length;
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      if (newIndex !== activeIndex) {
+        setActiveIndex(newIndex);
+      }
+    }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    container?.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      container?.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  const scrollToTestimonial = (index: number) => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const cardWidth = container.scrollWidth / testimonials.length;
+      container.scrollTo({
+        left: cardWidth * index,
+        behavior: 'smooth',
+      });
+    }
+  };
+
 
   return (
     <section ref={sectionRef} id="testimonials" className={`py-16 sm:py-20 bg-gray-900 section-animate ${isVisible ? 'is-visible' : ''}`}>
@@ -76,15 +110,24 @@ const Testimonials: React.FC = () => {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          {/* 
-            This container acts as a touch-friendly slider on mobile (flex with overflow) 
-            and transitions to a grid layout on larger screens.
-          */}
-          <div className="flex overflow-x-auto snap-x snap-mandatory space-x-4 rtl:space-x-reverse pb-4 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-x-0 no-scrollbar">
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto snap-x snap-mandatory space-x-4 rtl:space-x-reverse pb-4 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-x-0 no-scrollbar">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="snap-center flex-shrink-0 w-[90%] md:w-full">
                 <TestimonialCard testimonial={testimonial} />
               </div>
+            ))}
+          </div>
+          
+          <div className="flex md:hidden justify-center items-center mt-6 space-x-2 rtl:space-x-reverse">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToTestimonial(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-amber-400 w-6' : 'bg-gray-600'}`}
+              />
             ))}
           </div>
         </div>
