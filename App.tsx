@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -18,25 +18,27 @@ import WhyChooseUs from './components/WhyChooseUs';
 import GiftVouchers from './components/GiftVouchers';
 import Team from './components/Team';
 import Membership from './components/Membership';
-import Blog from './components/Blog'; // Import the new component
-import ArticleModal from './components/ArticleModal'; // Import the new component
+import Blog from './components/Blog';
+import ArticleModal from './components/ArticleModal';
+import PrivacyPolicy from './components/PrivacyPolicy'; // Import the new component
 import { Service, Article } from './types';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false); // New state for article modal
+  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false); // New state for privacy modal
   const [selectedService, setSelectedService] = useState('');
   const [serviceForDetail, setServiceForDetail] = useState<Service | null>(null);
-  const [articleForDetail, setArticleForDetail] = useState<Article | null>(null); // New state for article detail
+  const [articleForDetail, setArticleForDetail] = useState<Article | null>(null);
   
   const appRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2200); // Increased duration for a more graceful preloader
+    }, 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -98,6 +100,9 @@ function App() {
     setTimeout(() => setArticleForDetail(null), 300);
   };
 
+  const handleOpenPrivacyModal = useCallback(() => setIsPrivacyModalOpen(true), []);
+  const handleClosePrivacyModal = useCallback(() => setIsPrivacyModalOpen(false), []);
+
   return (
     <>
       <Preloader isLoading={isLoading} />
@@ -122,7 +127,7 @@ function App() {
           <FAQ />
           <LocationAndBranches />
         </main>
-        <Footer />
+        <Footer onPrivacyPolicyClick={handleOpenPrivacyModal} />
         <FloatingWhatsApp />
         <BackToTopButton />
         <BookingModal 
@@ -140,6 +145,10 @@ function App() {
           isOpen={isArticleModalOpen}
           onClose={handleCloseArticleModal}
           article={articleForDetail}
+        />
+        <PrivacyPolicy
+          isOpen={isPrivacyModalOpen}
+          onClose={handleClosePrivacyModal}
         />
       </div>
     </>
