@@ -33,92 +33,96 @@
     <meta name="twitter:description" content="استمتع بتجربة استرخاء لا مثيل لها في مركز ماسة للرجال بالدقي. نقدم خدمات مساج احترافية، حمام مغربي ملكي، وعناية متكاملة بالجسم. احجز الآن." />
     <meta name="twitter:image" content="https://i.postimg.cc/NjrHvVHN/Pink-Beauty-Wellness-Spa-Facebook-Cover.jpg" />
 
-    <!-- JSON-LD Schema Markup -->
+    <!-- Enhanced JSON-LD Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "مركز ماسة للرجال",
-      "image": "https://i.postimg.cc/NjrHvVHN/Pink-Beauty-Wellness-Spa-Facebook-Cover.jpg",
-      "@id": "https://masa-spa.netlify.app",
-      "url": "https://masa-spa.netlify.app",
-      "telephone": "+201050006013",
-      "priceRange": "$$",
-      "description": "استمتع بتجربة استرخاء لا مثيل لها في مركز ماسة للرجال بالدقي. نقدم خدمات مساج احترافية، حمام مغربي ملكي، وعناية متكاملة بالجسم.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "32 شارع هارون، متفرع من شارع ابن مروان",
-        "addressLocality": "الدقي",
-        "addressRegion": "الجيزة",
-        "postalCode": "12611",
-        "addressCountry": "EG"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 30.0383799,
-        "longitude": 31.2143126
-      },
-      "openingHoursSpecification": [
+      "@graph": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-          ],
-          "opens": "10:00",
-          "closes": "22:00"
-        }
-      ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "كيف يمكنني حجز موعد؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "يمكنك حجز موعدك بسهولة عن طريق الضغط على زر \"حجز هذه الخدمة\" أو \"احجز هذه الباقة\"، وسيتم تحويلك مباشرة إلى تطبيق واتساب للتواصل مع فريقنا وتأكيد الموعد المناسب لك."
-          }
+          "@type": "HealthAndBeautyBusiness",
+          "name": "مركز ماسة للرجال",
+          "image": "https://i.postimg.cc/NjrHvVHN/Pink-Beauty-Wellness-Spa-Facebook-Cover.jpg",
+          "@id": "https://masa-spa.netlify.app",
+          "url": "https://masa-spa.netlify.app",
+          "telephone": "+201050006013",
+          "priceRange": "$$",
+          "description": "استمتع بتجربة استرخاء لا مثيل لها في مركز ماسة للرجال بالدقي. نقدم خدمات مساج احترافية، حمام مغربي ملكي، وعناية متكاملة بالجسم.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "32 شارع هارون، متفرع من شارع ابن مروان",
+            "addressLocality": "الدقي",
+            "addressRegion": "الجيزة",
+            "postalCode": "12611",
+            "addressCountry": "EG"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 30.0383799,
+            "longitude": 31.2143126
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "10:00",
+              "closes": "22:00"
+            }
+          ]
         },
         {
-          "@type": "Question",
-          "name": "ما هي طرق الدفع المتاحة؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نقبل الدفع النقدي في المركز، بالإضافة إلى إمكانية الدفع عبر المحافظ الإلكترونية. يرجى الاستفسار عن التفاصيل عند الحجز."
-          }
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "كيف يمكنني حجز موعد؟", "acceptedAnswer": {"@type": "Answer", "text": "يمكنك حجز موعدك بسهولة عن طريق الضغط على زر \"حجز هذه الخدمة\" أو \"احجز هذه الباقة\"، وسيتم تحويلك مباشرة إلى تطبيق واتساب للتواصل مع فريقنا وتأكيد الموعد المناسب لك."}},
+            {"@type": "Question", "name": "ما هي طرق الدفع المتاحة؟", "acceptedAnswer": {"@type": "Answer", "text": "نقبل الدفع النقدي في المركز، بالإضافة إلى إمكانية الدفع عبر المحافظ الإلكترونية. يرجى الاستفسار عن التفاصيل عند الحجز."}},
+            {"@type": "Question", "name": "هل يجب أن أستعد بشكل خاص قبل الجلسة؟", "acceptedAnswer": {"@type": "Answer", "text": "نوصي بالوصول قبل موعدك بـ 10 دقائق للاسترخاء. من الأفضل تجنب تناول وجبة دسمة قبل جلسة المساج مباشرة. فريقنا سيزودك بكافة الإرشادات اللازمة عند وصولك."}},
+            {"@type": "Question", "name": "ما هي سياسة الإلغاء أو تعديل المواعيد؟", "acceptedAnswer": {"@type": "Answer", "text": "نقدر وقتك ووقت أخصائيينا. في حال رغبتك في إلغاء أو تعديل الموعد، يرجى إبلاغنا قبل 24 ساعة على الأقل من الموعد المحدد لتجنب أي رسوم."}},
+            {"@type": "Question", "name": "هل جميع الأخصائيين لديكم معتمدون؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم بكل تأكيد. يضم فريقنا نخبة من الأخصائيين المحترفين والمعتمدين الذين يمتلكون خبرة واسعة في مجال المساج والعناية بالجسم لضمان تقديم خدمة عالية الجودة وآمنة."}}
+          ]
         },
         {
-          "@type": "Question",
-          "name": "هل يجب أن أستعد بشكل خاص قبل الجلسة؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نوصي بالوصول قبل موعدك بـ 10 دقائق للاسترخاء. من الأفضل تجنب تناول وجبة دسمة قبل جلسة المساج مباشرة. فريقنا سيزودك بكافة الإرشادات اللازمة عند وصولك."
-          }
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "أحمد خالد"},
+          "reviewBody": "تجربة لا تُنسى! المساج كان احترافياً جداً والمكان يبعث على الهدوء والراحة. سأعود بالتأكيد.",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "itemReviewed": {"@id": "https://masa-spa.netlify.app"}
         },
         {
-          "@type": "Question",
-          "name": "ما هي سياسة الإلغاء أو تعديل المواعيد؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نقدر وقتك ووقت أخصائيينا. في حال رغبتك في إلغاء أو تعديل الموعد، يرجى إبلاغنا قبل 24 ساعة على الأقل من الموعد المحدد لتجنب أي رسوم."
-          }
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "محمد علي"},
+          "reviewBody": "الحمام المغربي الملكي كان أفضل ما جربت على الإطلاق. شعرت بتجدد كامل ونظافة فائقة. شكراً لكم.",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "itemReviewed": {"@id": "https://masa-spa.netlify.app"}
         },
         {
-          "@type": "Question",
-          "name": "هل جميع الأخصائيين لديكم معتمدون؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نعم بكل تأكيد. يضم فريقنا نخبة من الأخصائيين المحترفين والمعتمدين الذين يمتلكون خبرة واسعة في مجال المساج والعناية بالجسم لضمان تقديم خدمة عالية الجودة وآمنة."
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "يوسف عبد الرحمن"},
+          "reviewBody": "فريق عمل محترم ومحترف، والاهتمام بالتفاصيل والنظافة ملحوظ. أنصح بشدة بزيارة مركز ماسة.",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "itemReviewed": {"@id": "https://masa-spa.netlify.app"}
+        },
+        {
+          "@type": "Service",
+          "serviceType": "Therapeutic Massage",
+          "name": "المساج العلاجي",
+          "description": "جلسة مخصصة لعلاج آلام العضلات والمفاصل وتحسين الدورة الدموية، تحت إشراف أخصائيين محترفين.",
+          "provider": {"@id": "https://masa-spa.netlify.app"}
+        },
+        {
+          "@type": "Service",
+          "serviceType": "DaySpa",
+          "name": "الحمام المغربي الكامل",
+          "description": "تجربة فاخرة تشمل تقشير بالصابون البلدي، قناع الطمي المغربي، وغسيل بالماء الدافئ لتنقية وتنعيم البشرة.",
+          "provider": {"@id": "https://masa-spa.netlify.app"}
+        },
+        {
+          "@type": "Service",
+          "serviceType": "Massage",
+          "name": "خدمة المساج المنزلي",
+          "description": "استمتع بتجربة ماسة الفاخرة في راحة منزلك. نرسل لك أفضل أخصائيينا المعتمدين مع كافة المعدات اللازمة.",
+          "provider": {"@id": "https://masa-spa.netlify.app"},
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "القاهرة الكبرى"
           }
         }
       ]

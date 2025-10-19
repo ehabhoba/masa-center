@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -16,15 +16,36 @@ const WhatsAppIcon = () => (
    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.687-1.475L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.398 1.908 6.166l-.36 1.323 1.331-.353z"/></svg>
 );
 
-
 const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, serviceName }) => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    // Reset form when modal opens
+    if (isOpen) {
+      setName('');
+      setPhone('');
+      setTime('');
+    }
+  }, [isOpen]);
+
   if (!isOpen) {
     return null;
   }
 
-  const handleWhatsAppBooking = () => {
+  const handleFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     const phoneNumber = '201050006013';
-    const message = `مرحباً مركز ماسة،\nأود حجز خدمة: *${serviceName}*.\n\nهل يمكننا تحديد الموعد المناسب؟`;
+    const message = `مرحباً مركز ماسة،
+أود حجز خدمة: *${serviceName}*.
+
+-- تفاصيل الطلب --
+الاسم: ${name}
+رقم الهاتف: ${phone}
+الوقت المفضل: ${time || 'لم يحدد'}
+
+شكراً لكم.`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     onClose();
@@ -52,18 +73,57 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, serviceNam
         <div className="text-center">
           <h3 className="text-2xl font-bold text-center text-amber-400 mb-2">تأكيد الحجز</h3>
           <p className="text-center text-gray-300 mb-6">
-            أنت على وشك حجز خدمة: <span className="font-bold block text-lg mt-1">{serviceName}</span>
+            لحجز خدمة: <span className="font-bold block text-lg mt-1">{serviceName}</span>
           </p>
-          <p className="text-gray-400 mb-6">
-            سيتم تحويلك إلى واتساب لإتمام عملية الحجز والتنسيق مع فريقنا مباشرة.
+          <p className="text-gray-400 mb-4 text-sm">
+            الرجاء إدخال بياناتك للمتابعة عبر واتساب.
           </p>
-          <button
-            onClick={handleWhatsAppBooking}
-            className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center space-x-2 rtl:space-x-reverse"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.687-1.475L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.398 1.908 6.166l-.36 1.323 1.331-.353z"/></svg>
-            <span>المتابعة للحجز عبر واتساب</span>
-          </button>
+          
+          <form onSubmit={handleFormSubmit} className="space-y-4 mb-6 text-right">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">الاسم بالكامل</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                placeholder="مثال: أحمد محمد"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">رقم الهاتف</label>
+              <input
+                type="tel"
+                id="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                placeholder="مثال: 01012345678"
+              />
+            </div>
+            <div>
+              <label htmlFor="time" className="block text-sm font-medium text-gray-300 mb-1">الوقت المفضل (اختياري)</label>
+              <input
+                type="text"
+                id="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                placeholder="مثال: غداً الساعة 5 مساءً"
+              />
+            </div>
+             <button
+                type="submit"
+                className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center justify-center space-x-2 rtl:space-x-reverse"
+              >
+               <WhatsAppIcon />
+               <span>المتابعة للحجز عبر واتساب</span>
+            </button>
+          </form>
+
           <div className="mt-6 text-center border-t border-gray-700 pt-4">
               <p className="text-gray-500 text-sm">أو يمكنك التواصل مباشرة على:</p>
               <div className="space-y-3 mt-4" dir="ltr">

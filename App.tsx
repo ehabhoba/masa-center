@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -17,11 +18,49 @@ import Preloader from './components/Preloader';
 import WhyChooseUs from './components/WhyChooseUs';
 import GiftVouchers from './components/GiftVouchers';
 import Team from './components/Team';
+import Careers from './components/Branches'; // Renamed import for Careers component
 import Membership from './components/Membership';
 import Blog from './components/Blog';
 import ArticleModal from './components/ArticleModal';
 import PrivacyPolicy from './components/PrivacyPolicy'; // Import the new component
 import { Service, Article } from './types';
+import HomeServices from './components/HomeServices';
+
+// Fix for TypeScript error: Property 'adsbygoogle' does not exist on type 'Window & typeof globalThis'.
+// This declaration extends the global Window interface to include the adsbygoogle property,
+// which is added by the Google AdSense script.
+declare global {
+  interface Window {
+    adsbygoogle?: unknown[];
+  }
+}
+
+// AdSense Component to display an ad unit
+const AdSenseUnit = () => {
+    useEffect(() => {
+        try {
+            // This is safe to run even if the adsbygoogle script is not loaded yet.
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (err) {
+            console.error("AdSense error:", err);
+        }
+    }, []);
+
+    return (
+        <div className="container mx-auto my-8 text-center section-animate">
+             {/* 
+                ملاحظة هامة: الرجاء استبدال "YOUR_AD_SLOT_ID" بمعرف شفرة الوحدة الإعلانية الفعلي من حسابك في AdSense.
+                هذا مجرد عنصر نائب ولن يعرض إعلانًا حقيقيًا بدونه.
+             */}
+            <ins className="adsbygoogle"
+                style={{ display: 'block' }}
+                data-ad-client="ca-pub-4442626272315276"
+                data-ad-slot="YOUR_AD_SLOT_ID" 
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+        </div>
+    );
+}
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -118,11 +157,14 @@ function App() {
           <Packages onBookServiceClick={handleBookServiceClick} />
           <HolidayPackages onBookServiceClick={handleBookServiceClick} />
           <GiftVouchers onBookServiceClick={handleBookServiceClick} />
+          <HomeServices onBookServiceClick={handleBookServiceClick} />
           <Membership onBookServiceClick={handleBookServiceClick} />
           <About />
           <WhyChooseUs />
           <Team />
+          <Careers onBookServiceClick={handleBookServiceClick} />
           <Testimonials />
+          <AdSenseUnit />
           <Blog onViewArticleDetails={handleViewArticleDetails} />
           <FAQ />
           <LocationAndBranches />

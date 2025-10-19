@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
@@ -27,9 +28,11 @@ const Header: React.FC = () => {
     { href: 'services', text: 'خدماتنا' },
     { href: 'packages', text: 'الباقات' },
     { href: 'holiday-packages', text: 'عروض الأعياد' },
+    { href: 'home-services', text: 'الخدمة المنزلية' },
     { href: 'membership', text: 'النادي المميز' },
     { href: 'about', text: 'عن المركز' },
     { href: 'team', text: 'فريقنا' },
+    { href: 'careers', text: 'انضم إلينا' },
     { href: 'blog', text: 'المدونة' },
     { href: 'testimonials', text: 'آراء العملاء' },
     { href: 'faq', text: 'الأسئلة الشائعة' },

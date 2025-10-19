@@ -124,13 +124,17 @@ const LocationAndBranches: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center text-white mb-8 border-b-2 border-amber-800 pb-2 max-w-md mx-auto">نغطي هذه المناطق أيضاً</h3>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+        <div className="mt-16 bg-gray-900/50 p-8 rounded-lg border border-gray-700/50">
+          <h3 className="text-2xl font-bold text-center text-white mb-8">مناطق خدمة المساج المنزلي</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-4">
             {otherServiceAreas.map((area) => (
-              <span key={area} className="bg-gray-700 text-gray-200 text-sm font-medium px-4 py-2 rounded-full shadow-md">
-                {area}
-              </span>
+              <div key={area} className="flex items-center text-gray-300 hover:text-amber-400 transition-colors duration-200 group">
+                <svg className="w-5 h-5 ml-2 text-amber-500/50 group-hover:text-amber-500 transition-colors duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="font-medium">{area}</span>
+              </div>
             ))}
           </div>
         </div>

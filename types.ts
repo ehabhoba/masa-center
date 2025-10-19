@@ -59,3 +59,9 @@ export interface Article {
   author: string;
   date: string;
 }
+
+export interface Testimonial {
+  quote: string;
+  author: string;
+  service: string;
+}
