@@ -7,21 +7,25 @@ interface HeroProps {
 
 const heroImageSources = [
   {
-    base: 'https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg',
-    alt: 'غرفة مساج هادئة وفاخرة مع زهرة الأوركيد ومنتجات السبا.'
+    base: 'https://images.pexels.com/photos/8619661/pexels-photo-8619661.jpeg',
+    alt: 'غرفة سبا عصرية ومجهزة بأسرّة مساج مريحة وإضاءة هادئة.'
   },
   {
-    base: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg',
-    alt: 'أخصائية مساج تقوم بصب الزيت العطري على ظهر عميل استعدادًا للجلسة.'
+    base: 'https://images.pexels.com/photos/3998421/pexels-photo-3998421.jpeg',
+    alt: 'جلسة مساج احترافية للظهر، تركز على إرخاء العضلات وتخفيف التوتر.'
   },
   {
-    base: 'https://images.pexels.com/photos/3779837/pexels-photo-3779837.jpeg',
-    alt: 'لقطة مقربة لجلسة مساج احترافية للظهر في أجواء باعثة على الاسترخاء.'
+    base: 'https://images.pexels.com/photos/1848471/pexels-photo-1848471.jpeg',
+    alt: 'لقطة مقربة لأحجار المساج الساخنة مصفوفة على الظهر لتعزيز الدورة الدموية والاسترخاء العميق.'
   },
   {
-    base: 'https://images.pexels.com/photos/3212164/pexels-photo-3212164.jpeg',
-    alt: 'أحجار مساج ساخنة بجانب زهور وشموع عطرية ترمز للسكينة والهدوء.'
+    base: 'https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg',
+    alt: 'أجواء سبا دافئة مع شموع عطرية، مناشف ملفوفة، وزهور تبعث على السكينة.'
   },
+  {
+    base: 'https://images.pexels.com/photos/3768593/pexels-photo-3768593.jpeg',
+    alt: 'أخصائي يقوم بعمل مساج للأنسجة العميقة لمنطقة الكتف والرقبة.'
+  }
 ];
 
 
