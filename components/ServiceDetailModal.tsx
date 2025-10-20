@@ -69,6 +69,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ isOpen, onClose
                             src={service.imageUrl} 
                             alt={service.name}
                             className="absolute inset-0 w-full h-full object-cover rounded-t-xl lg:rounded-r-none lg:rounded-l-xl"
+                            loading="lazy"
                         />
                     </div>
 

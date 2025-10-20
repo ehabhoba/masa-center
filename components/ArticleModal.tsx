@@ -54,7 +54,12 @@ const ArticleModal: React.FC<ArticleModalProps> = ({ isOpen, onClose, article })
             </button>
             
             <div className="max-h-[300px] overflow-hidden">
-              <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover" />
+              <img 
+                src={article.imageUrl} 
+                alt={article.title} 
+                className="w-full h-full object-cover" 
+                loading="lazy"
+              />
             </div>
 
             <div className="p-8">

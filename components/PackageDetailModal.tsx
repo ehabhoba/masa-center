@@ -69,6 +69,7 @@ const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ isOpen, onClose
                             src={pkg.imageUrl} 
                             alt={pkg.name}
                             className="absolute inset-0 w-full h-full object-cover rounded-t-xl lg:rounded-r-none lg:rounded-l-xl"
+                            loading="lazy"
                         />
                     </div>
 

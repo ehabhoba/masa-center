@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const galleryImages = [
-  { src: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg', alt: 'جلسة مساج ظهر احترافية في أجواء هادئة.' },
-  { src: 'https://images.pexels.com/photos/3768600/pexels-photo-3768600.jpeg', alt: 'أخصائي يقوم بمساج الأنسجة العميقة على كتف العميل.' },
-  { src: 'https://images.pexels.com/photos/3779837/pexels-photo-3779837.jpeg', alt: 'سكب زيت المساج الدافئ على ظهر العميل استعداداً للجلسة.' },
-  { src: 'https://images.pexels.com/photos/7249405/pexels-photo-7249405.jpeg', alt: 'مجموعة من أدوات الحمام المغربي التقليدية، بما في ذلك الصابون البلدي والليفة.' },
-  { src: 'https://images.pexels.com/photos/3998414/pexels-photo-3998414.jpeg', alt: 'لقطة مقربة لمساج علاجي لمنطقة الكتف والرقبة.' },
-  { src: 'https://images.pexels.com/photos/3757955/pexels-photo-3757955.jpeg', alt: 'غرفة مساج مجهزة بالشموع والزيوت العطرية والمناشف النظيفة.' },
-  { src: 'https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg', alt: 'مساج استرخائي باستخدام منتجات طبيعية وعضوية.' },
-  { src: 'https://images.pexels.com/photos/7690135/pexels-photo-7690135.jpeg', alt: 'أحجار المساج الساخنة مصفوفة على ظهر العميل لتخفيف التوتر.' },
-  { src: 'https://images.pexels.com/photos/3998397/pexels-photo-3998397.jpeg', alt: 'غرفة سبا فاخرة مع حوض استحمام وتصميم داخلي أنيق.' },
-  { src: 'https://images.pexels.com/photos/6621472/pexels-photo-6621472.jpeg', alt: 'رجل مسترخي على سرير المساج بانتظار بدء جلسته.' },
-  { src: 'https://images.pexels.com/photos/7249401/pexels-photo-7249401.jpeg', alt: 'داخل حمام تركي تقليدي مع مقاعد رخامية وإضاءة خافتة.' },
-  { src: 'https://images.pexels.com/photos/3735165/pexels-photo-3735165.jpeg', alt: 'أجواء هادئة مع شموع مضاءة وزهور لتعزيز تجربة الاسترخاء.' }
+  { src: 'https://images.pexels.com/photos/3998421/pexels-photo-3998421.jpeg', alt: 'أخصائي محترف يقوم بعمل مساج علاجي لظهر العميل.' },
+  { src: 'https://images.pexels.com/photos/1848471/pexels-photo-1848471.jpeg', alt: 'لقطة مقربة لأحجار المساج الساخنة المستخدمة في العلاج.' },
+  { src: 'https://images.pexels.com/photos/4506269/pexels-photo-4506269.jpeg', alt: 'سرير مساج نظيف ومجهز بالكامل في غرفة هادئة.' },
+  { src: 'https://images.pexels.com/photos/7690135/pexels-photo-7690135.jpeg', alt: 'أحجار البازلت السوداء مصفوفة بعناية على الظهر لتعزيز الاسترخاء.' },
+  { src: 'https://images.pexels.com/photos/3985354/pexels-photo-3985354.jpeg', alt: 'مجموعة من منتجات المساج الطبيعية، بما في ذلك الزيوت والأملاح.' },
+  { src: 'https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg', alt: 'أجواء سبا هادئة مع شموع مضاءة ومناشف نظيفة جاهزة لجلسة مساج.' },
+  { src: 'https://images.pexels.com/photos/3779844/pexels-photo-3779844.jpeg', alt: 'جلسة تدليك وعناية بالقدمين (فوت مساج) احترافية.' },
+  { src: 'https://images.pexels.com/photos/3760275/pexels-photo-3760275.jpeg', alt: 'رجل مسترخٍ تماماً في مركز السبا بعد انتهاء جلسة المساج.' },
+  { src: 'https://images.pexels.com/photos/3212164/pexels-photo-3212164.jpeg', alt: 'تفاصيل ديكور غرفة المساج الفاخر مع زهرة الأوركيد والشموع.' },
+  { src: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg', alt: 'أخصائية تقوم بتطبيق زيت المساج على ظهر العميل.' },
+  { src: 'https://images.pexels.com/photos/3768593/pexels-photo-3768593.jpeg', alt: 'مساج الأنسجة العميقة لمنطقة الكتف والرقبة.' },
+  { src: 'https://images.pexels.com/photos/4210315/pexels-photo-4210315.jpeg', alt: 'أجواء الاسترخاء والسكينة داخل مركز ماسة للمساج.' }
 ];
 
 interface GalleryImage {

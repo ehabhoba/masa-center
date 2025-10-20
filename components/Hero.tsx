@@ -5,22 +5,35 @@ interface HeroProps {
   onBookNowClick: () => void;
 }
 
-const heroImages = [
-  'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
-  'https://images.pexels.com/photos/3757955/pexels-photo-3757955.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
-  'https://images.pexels.com/photos/7690135/pexels-photo-7690135.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
-  'https://images.pexels.com/photos/3998397/pexels-photo-3998397.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
+const heroImageSources = [
+  {
+    base: 'https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg',
+    alt: 'غرفة مساج هادئة وفاخرة مع زهرة الأوركيد ومنتجات السبا.'
+  },
+  {
+    base: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg',
+    alt: 'أخصائية مساج تقوم بصب الزيت العطري على ظهر عميل استعدادًا للجلسة.'
+  },
+  {
+    base: 'https://images.pexels.com/photos/3779837/pexels-photo-3779837.jpeg',
+    alt: 'لقطة مقربة لجلسة مساج احترافية للظهر في أجواء باعثة على الاسترخاء.'
+  },
+  {
+    base: 'https://images.pexels.com/photos/3212164/pexels-photo-3212164.jpeg',
+    alt: 'أحجار مساج ساخنة بجانب زهور وشموع عطرية ترمز للسكينة والهدوء.'
+  },
 ];
+
 
 const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextSlide = useCallback(() => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImageSources.length);
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + heroImages.length) % heroImages.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + heroImageSources.length) % heroImageSources.length);
   }, []);
   
   const goToSlide = (index: number) => {
@@ -36,16 +49,25 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
     <section className="relative h-[70vh] md:h-screen overflow-hidden">
       {/* Image Slider Container */}
       <div className="absolute inset-0 w-full h-full">
-        {heroImages.map((image, index) => (
-          <div
-            key={image}
-            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
-            style={{ backgroundImage: `url(${image})` }}
-            aria-hidden={index !== currentImageIndex}
-            aria-label="Hero background image"
-            role="img"
-          />
-        ))}
+        {heroImageSources.map((image, index) => {
+          const commonParams = 'auto=compress&cs=tinysrgb&fit=crop';
+          const widths = [640, 768, 1024, 1280, 1920];
+          const srcSet = widths.map(w => `${image.base}?${commonParams}&w=${w} ${w}w`).join(', ');
+
+          return (
+            <img
+              key={image.base}
+              src={`${image.base}?${commonParams}&w=1280`}
+              srcSet={srcSet}
+              sizes="100vw"
+              alt={image.alt}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+              aria-hidden={index !== currentImageIndex}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          );
+        })}
       </div>
       
       <div className="absolute inset-0 bg-black/60 z-10"></div>
@@ -83,7 +105,7 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
 
       {/* Pagination Dots */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-2 rtl:space-x-reverse">
-        {heroImages.map((_, index) => (
+        {heroImageSources.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
