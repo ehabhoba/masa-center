@@ -7,24 +7,24 @@ interface HeroProps {
 
 const heroImageSources = [
   {
-    base: 'https://images.pexels.com/photos/8619661/pexels-photo-8619661.jpeg',
+    base: 'https://images.pexels.com/photos/7263026/pexels-photo-7263026.jpeg',
     alt: 'غرفة سبا عصرية ومجهزة بأسرّة مساج مريحة وإضاءة هادئة.'
   },
   {
-    base: 'https://images.pexels.com/photos/3998421/pexels-photo-3998421.jpeg',
+    base: 'https://images.pexels.com/photos/4138903/pexels-photo-4138903.jpeg',
     alt: 'جلسة مساج احترافية للظهر، تركز على إرخاء العضلات وتخفيف التوتر.'
   },
   {
-    base: 'https://images.pexels.com/photos/1848471/pexels-photo-1848471.jpeg',
+    base: 'https://images.pexels.com/photos/3843396/pexels-photo-3843396.jpeg',
     alt: 'لقطة مقربة لأحجار المساج الساخنة مصفوفة على الظهر لتعزيز الدورة الدموية والاسترخاء العميق.'
   },
   {
-    base: 'https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg',
+    base: 'https://images.pexels.com/photos/3958423/pexels-photo-3958423.jpeg',
     alt: 'أجواء سبا دافئة مع شموع عطرية، مناشف ملفوفة، وزهور تبعث على السكينة.'
   },
   {
-    base: 'https://images.pexels.com/photos/3768593/pexels-photo-3768593.jpeg',
-    alt: 'أخصائي يقوم بعمل مساج للأنسجة العميقة لمنطقة الكتف والرقبة.'
+    base: 'https://images.pexels.com/photos/7176319/pexels-photo-7176319.jpeg',
+    alt: 'رجل مسترخٍ في رداء الحمام داخل غرفة سبا فاخرة.'
   }
 ];
 

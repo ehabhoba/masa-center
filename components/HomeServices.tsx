@@ -24,7 +24,7 @@ const HomeServices: React.FC<HomeServicesProps> = ({ onBookServiceClick }) => {
   ];
 
   return (
-    <section id="home-services" className="relative py-16 sm:py-20 bg-gray-900 section-animate bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')" }}>
+    <section id="home-services" className="relative py-16 sm:py-20 bg-gray-900 section-animate bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('https://images.pexels.com/photos/7533347/pexels-photo-7533347.jpeg')" }}>
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
