@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { holidayPackages } from '../constants';
 import { HolidayPackage } from '../types';
@@ -7,7 +8,7 @@ interface HolidayPackagesProps {
 }
 
 const HolidayPackageCard: React.FC<{ pkg: HolidayPackage, onBookServiceClick: (serviceName:string) => void }> = React.memo(({ pkg, onBookServiceClick }) => (
-    <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden group transition-all duration-300 flex flex-col md:flex-row relative card-glow-effect border border-gray-700/50">
+    <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden group transition-all duration-300 flex flex-col md:flex-row relative card-glow-effect border border-gray-700/50 hover:border-amber-400/80">
       <div className="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg z-10 animate-pulse">
         عرض خاص
       </div>

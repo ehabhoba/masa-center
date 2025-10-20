@@ -25,7 +25,12 @@ const ServiceCard: React.FC<{ service: Service, onCardClick: (service: Service) 
     </div>
     <div className="p-6 flex-grow flex flex-col">
       <div className="flex-grow">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">{service.name}</h3>
+        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors flex items-center">
+          <svg className="h-5 w-5 ml-2 text-amber-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
+          </svg>
+          <span>{service.name}</span>
+        </h3>
         <p className="text-gray-400 mb-4 text-sm">{service.description}</p>
       </div>
       <div className="mt-auto pt-4 border-t border-gray-700">
@@ -63,21 +68,24 @@ const Services: React.FC<ServicesProps> = ({ onServiceCardClick }) => {
           <p className="mt-4 text-lg text-gray-300">نقدم مجموعة شاملة من خدمات المساج والعناية الرجالية بأعلى معايير الجودة</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
-          {filters.map(filter => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-5 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 transform hover:scale-105 ${
-                activeFilter === filter
-                  ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
-                  : 'bg-gray-800 text-gray-300 hover:bg-amber-500/20 hover:text-amber-400'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
+        <div className="mb-12">
+          <div className="flex space-x-2 rtl:space-x-reverse overflow-x-auto pb-4 no-scrollbar">
+            {filters.map(filter => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`flex-shrink-0 px-5 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 transform hover:scale-105 ${
+                  activeFilter === filter
+                    ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
+                    : 'bg-gray-800 text-gray-300 hover:bg-amber-500/20 hover:text-amber-400'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
+
 
         {filteredCategories.map((category: ServiceCategory, index: number) => (
           <div key={category.title} className="mb-16 animate-fade-in-up" style={{animationDelay: `${index * 150}ms`, opacity: 1}}>

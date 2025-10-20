@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface HomeServicesProps {
@@ -13,19 +12,19 @@ const HomeServices: React.FC<HomeServicesProps> = ({ onBookServiceClick }) => {
       description: 'نرسل لك أفضل خبرائنا المعتمدين لضمان خدمة عالية الجودة.',
     },
     {
-      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>,
+      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>,
       title: 'تجهيزات كاملة',
       description: 'نحضر معنا كل ما يلزم من طاولة المساج والزيوت والمناشف المعقمة.',
     },
     {
-      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
+      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
       title: 'خصوصية وأمان',
       description: 'تمتع بالاسترخاء في بيئتك الخاصة مع ضمان أقصى درجات الخصوصية.',
     },
   ];
 
   return (
-    <section id="home-services" className="relative py-16 sm:py-20 bg-gray-900 section-animate bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('https://i.postimg.cc/6p3f7SgS/package-vitality.jpg')" }}>
+    <section id="home-services" className="relative py-16 sm:py-20 bg-gray-900 section-animate bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('https://i.ibb.co/gR7J91d/pexels-mikhail-nilov-7533433.jpg')" }}>
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">

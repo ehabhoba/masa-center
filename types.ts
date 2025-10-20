@@ -1,8 +1,10 @@
+
 export interface Service {
   name: string;
   description: string;
   duration: string;
   imageUrl: string;
+  icon: string;
 }
 
 export interface ServiceCategory {
@@ -10,11 +12,17 @@ export interface ServiceCategory {
   services: Service[];
 }
 
+export interface PackageService {
+    name: string;
+    duration: string;
+}
+
 export interface Package {
   name: string;
   description: string;
   duration: string;
   imageUrl: string;
+  servicesIncluded: PackageService[];
 }
 
 export interface HolidayPackage {

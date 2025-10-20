@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -23,8 +24,10 @@ import Membership from './components/Membership';
 import Blog from './components/Blog';
 import ArticleModal from './components/ArticleModal';
 import PrivacyPolicy from './components/PrivacyPolicy'; // Import the new component
-import { Service, Article } from './types';
+import Gallery from './components/Gallery'; // Import the new Gallery component
+import { Service, Article, Package } from './types';
 import HomeServices from './components/HomeServices';
+import PackageDetailModal from './components/PackageDetailModal';
 
 // Fix for TypeScript error: Property 'adsbygoogle' does not exist on type 'Window & typeof globalThis'.
 // This declaration extends the global Window interface to include the adsbygoogle property,
@@ -67,10 +70,12 @@ function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
-  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false); // New state for privacy modal
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isPackageModalOpen, setIsPackageModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState('');
   const [serviceForDetail, setServiceForDetail] = useState<Service | null>(null);
   const [articleForDetail, setArticleForDetail] = useState<Article | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
   
   const appRef = useRef<HTMLDivElement>(null);
 
@@ -139,6 +144,16 @@ function App() {
     setTimeout(() => setArticleForDetail(null), 300);
   };
 
+  const handleViewPackageDetails = (pkg: Package) => {
+    setSelectedPackage(pkg);
+    setIsPackageModalOpen(true);
+  };
+
+  const handleClosePackageModal = () => {
+    setIsPackageModalOpen(false);
+    setTimeout(() => setSelectedPackage(null), 300);
+  };
+
   const handleOpenPrivacyModal = useCallback(() => setIsPrivacyModalOpen(true), []);
   const handleClosePrivacyModal = useCallback(() => setIsPrivacyModalOpen(false), []);
 
@@ -154,7 +169,7 @@ function App() {
         <main>
           <Hero onBookNowClick={handleBookNowClick} />
           <Services onServiceCardClick={handleViewServiceDetails} />
-          <Packages onBookServiceClick={handleBookServiceClick} />
+          <Packages onPackageCardClick={handleViewPackageDetails} />
           <HolidayPackages onBookServiceClick={handleBookServiceClick} />
           <GiftVouchers onBookServiceClick={handleBookServiceClick} />
           <HomeServices onBookServiceClick={handleBookServiceClick} />
@@ -164,6 +179,7 @@ function App() {
           <Team />
           <Careers onBookServiceClick={handleBookServiceClick} />
           <Testimonials />
+          <Gallery />
           <AdSenseUnit />
           <Blog onViewArticleDetails={handleViewArticleDetails} />
           <FAQ />
@@ -187,6 +203,12 @@ function App() {
           isOpen={isArticleModalOpen}
           onClose={handleCloseArticleModal}
           article={articleForDetail}
+        />
+        <PackageDetailModal
+          isOpen={isPackageModalOpen}
+          onClose={handleClosePackageModal}
+          pkg={selectedPackage}
+          onBookServiceClick={handleBookServiceClick}
         />
         <PrivacyPolicy
           isOpen={isPrivacyModalOpen}

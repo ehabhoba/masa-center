@@ -44,6 +44,57 @@ const Testimonials: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const scrollToTestimonial = useCallback((index: number) => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const card = container.children[index] as HTMLElement;
+      if(card) {
+        container.scrollTo({
+          left: card.offsetLeft,
+          behavior: 'smooth',
+        });
+        setActiveIndex(index);
+      }
+    }
+  }, []);
+
+  const handleNext = () => {
+    const newIndex = (activeIndex + 1) % testimonials.length;
+    scrollToTestimonial(newIndex);
+  };
+  
+  const handlePrev = () => {
+    const newIndex = (activeIndex - 1 + testimonials.length) % testimonials.length;
+    scrollToTestimonial(newIndex);
+  };
+
+  const handleScroll = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+        const children = Array.from(container.children) as HTMLElement[];
+        const containerScrollLeft = container.scrollLeft;
+        const containerWidth = container.offsetWidth;
+
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        children.forEach((child, index) => {
+            const childCenter = child.offsetLeft + child.offsetWidth / 2;
+            const containerCenter = containerScrollLeft + containerWidth / 2;
+            const distance = Math.abs(childCenter - containerCenter);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+            }
+        });
+        
+        if (closestIndex !== activeIndex) {
+            setActiveIndex(closestIndex);
+        }
+    }
+  }, [activeIndex]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,50 +105,16 @@ const Testimonials: React.FC = () => {
       },
       { threshold: 0.1 }
     );
-
     const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
+    if (currentRef) observer.observe(currentRef);
+    return () => { if (currentRef) observer.unobserve(currentRef); };
   }, []);
-  
-  const handleScroll = useCallback(() => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = container.scrollWidth / testimonials.length;
-      const newIndex = Math.round(scrollLeft / cardWidth);
-      if (newIndex !== activeIndex) {
-        setActiveIndex(newIndex);
-      }
-    }
-  }, [activeIndex]);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     container?.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      container?.removeEventListener('scroll', handleScroll);
-    };
+    return () => container?.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
-
-  const scrollToTestimonial = (index: number) => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      const cardWidth = container.scrollWidth / testimonials.length;
-      container.scrollTo({
-        left: cardWidth * index,
-        behavior: 'smooth',
-      });
-    }
-  };
-
 
   return (
     <section ref={sectionRef} id="testimonials" className={`py-16 sm:py-20 bg-gray-900 section-animate ${isVisible ? 'is-visible' : ''}`}>
@@ -109,7 +126,7 @@ const Testimonials: React.FC = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto relative">
           <div 
             ref={scrollContainerRef}
             className="flex overflow-x-auto snap-x snap-mandatory space-x-4 rtl:space-x-reverse pb-4 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:space-x-0 no-scrollbar">
@@ -130,6 +147,14 @@ const Testimonials: React.FC = () => {
               />
             ))}
           </div>
+
+          <button onClick={handlePrev} className="absolute top-1/2 -translate-y-1/2 right-0 -mr-4 md:-mr-8 bg-gray-800/50 p-2 rounded-full text-white hover:bg-amber-500 transition-colors hidden md:block" aria-label="Previous testimonial">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <button onClick={handleNext} className="absolute top-1/2 -translate-y-1/2 left-0 -ml-4 md:-ml-8 bg-gray-800/50 p-2 rounded-full text-white hover:bg-amber-500 transition-colors hidden md:block" aria-label="Next testimonial">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+
         </div>
       </div>
     </section>
