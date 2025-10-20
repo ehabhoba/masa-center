@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const galleryImages = [
-  { src: 'https://i.ibb.co/k2B1GZn/pexels-yan-krukau-8538743.jpg', alt: 'غرفة سبا فاخرة مع حوض استحمام دائري وإضاءة دافئة.' },
-  { src: 'https://i.ibb.co/DCd1s4Y/pexels-karolina-grabowska-4210611.jpg', alt: 'لقطة مقربة لأحجار المساج البازلتية السوداء مصفوفة بعناية.' },
-  { src: 'https://i.ibb.co/bJCz5C2/pexels-gabby-k-5938349.jpg', alt: 'أخصائي محترف يقوم بتطبيق ضغط علاجي على ظهر العميل.' },
-  { src: 'https://i.ibb.co/9qL2Jg1/pexels-rene-asmussen-1449455.jpg', alt: 'ردهة استرخاء هادئة مع كراسي مريحة ونباتات طبيعية.' },
-  { src: 'https://i.ibb.co/g9LkTsc/pexels-monstera-production-7249399.jpg', alt: 'داخل حمام مغربي أصيل مع بخار وأدوات تقليدية.' },
-  { src: 'https://i.ibb.co/Y0yRkM6/pexels-ron-lach-8090137.jpg', alt: 'رجل يخضع لجلسة عناية بالبشرة مع قناع وجه احترافي.' },
-  { src: 'https://i.ibb.co/gDFvL8L/pexels-good-feelings-3768916.jpg', alt: 'تجهيزات جلسة مساج فاخرة مع مناشف ملفوفة وشموع مضاءة وزهور.' },
-  { src: 'https://i.ibb.co/Yhv7YjK/pexels-hatice-baran-12347576.jpg', alt: 'زيوت عطرية طبيعية في زجاجات أنيقة مع أعشاب مجففة.' },
-  { src: 'https://i.ibb.co/N6N0d79/pexels-mikhail-nilov-8551187.jpg', alt: 'جلسة باديكير وعناية بالأقدام للرجال في بيئة نظيفة ومريحة.' },
-  { src: 'https://i.ibb.co/Ld1vN1Y/pexels-diana-dsm-9149170.jpg', alt: 'رجل يسترخي في رداء حمام أنيق بعد جلسة سبا منعشة.' },
-  { src: 'https://i.ibb.co/gR7J91d/pexels-mikhail-nilov-7533433.jpg', alt: 'رجل يستمتع بالهدوء داخل غرفة الساونا الخشبية الحديثة.' },
-  { src: 'https://i.ibb.co/f2s7x0R/pexels-ron-lach-8100155.jpg', alt: 'مجموعة من منتجات العناية بالبشرة الرجالية الفاخرة على سطح رخامي.' }
+  { src: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg', alt: 'جلسة مساج ظهر احترافية في أجواء هادئة.' },
+  { src: 'https://images.pexels.com/photos/3768600/pexels-photo-3768600.jpeg', alt: 'أخصائي يقوم بمساج الأنسجة العميقة على كتف العميل.' },
+  { src: 'https://images.pexels.com/photos/3779837/pexels-photo-3779837.jpeg', alt: 'سكب زيت المساج الدافئ على ظهر العميل استعداداً للجلسة.' },
+  { src: 'https://images.pexels.com/photos/7249405/pexels-photo-7249405.jpeg', alt: 'مجموعة من أدوات الحمام المغربي التقليدية، بما في ذلك الصابون البلدي والليفة.' },
+  { src: 'https://images.pexels.com/photos/3998414/pexels-photo-3998414.jpeg', alt: 'لقطة مقربة لمساج علاجي لمنطقة الكتف والرقبة.' },
+  { src: 'https://images.pexels.com/photos/3757955/pexels-photo-3757955.jpeg', alt: 'غرفة مساج مجهزة بالشموع والزيوت العطرية والمناشف النظيفة.' },
+  { src: 'https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg', alt: 'مساج استرخائي باستخدام منتجات طبيعية وعضوية.' },
+  { src: 'https://images.pexels.com/photos/7690135/pexels-photo-7690135.jpeg', alt: 'أحجار المساج الساخنة مصفوفة على ظهر العميل لتخفيف التوتر.' },
+  { src: 'https://images.pexels.com/photos/3998397/pexels-photo-3998397.jpeg', alt: 'غرفة سبا فاخرة مع حوض استحمام وتصميم داخلي أنيق.' },
+  { src: 'https://images.pexels.com/photos/6621472/pexels-photo-6621472.jpeg', alt: 'رجل مسترخي على سرير المساج بانتظار بدء جلسته.' },
+  { src: 'https://images.pexels.com/photos/7249401/pexels-photo-7249401.jpeg', alt: 'داخل حمام تركي تقليدي مع مقاعد رخامية وإضاءة خافتة.' },
+  { src: 'https://images.pexels.com/photos/3735165/pexels-photo-3735165.jpeg', alt: 'أجواء هادئة مع شموع مضاءة وزهور لتعزيز تجربة الاسترخاء.' }
 ];
 
 interface GalleryImage {
@@ -107,13 +107,14 @@ const Gallery: React.FC = () => {
         </div>
       </section>
 
-      {/* Image Modal */}
+      {/* Image Modal (Lightbox) */}
       {selectedImage && (
         <div
           className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${isModalOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
           onClick={closeModal}
           role="dialog"
           aria-modal="true"
+          aria-labelledby="lightbox-caption"
         >
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
           <button
@@ -128,13 +129,14 @@ const Gallery: React.FC = () => {
           <figure
             onClick={(e) => e.stopPropagation()}
             className={`relative max-w-4xl max-h-[90vh] w-full transform transition-all duration-300 ease-out ${isModalOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
+            role="group"
           >
             <img
-              src={selectedImage.src}
+              src={`${selectedImage.src.split('?')[0]}?auto=compress&cs=tinysrgb&w=1200`}
               alt={selectedImage.alt}
               className="rounded-lg shadow-2xl object-contain w-full h-full max-h-[85vh]"
             />
-            <figcaption className="text-center text-white mt-2 text-base bg-black/60 p-2 rounded-b-lg">
+            <figcaption id="lightbox-caption" className="text-center text-white mt-2 text-base bg-black/60 p-2 rounded-b-lg">
               {selectedImage.alt}
             </figcaption>
           </figure>

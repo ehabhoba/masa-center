@@ -6,10 +6,10 @@ interface HeroProps {
 }
 
 const heroImages = [
-  'https://i.ibb.co/k2B1GZn/pexels-yan-krukau-8538743.jpg',
-  'https://i.ibb.co/gDFvL8L/pexels-good-feelings-3768916.jpg',
-  'https://i.ibb.co/bJCz5C2/pexels-gabby-k-5938349.jpg',
-  'https://i.ibb.co/g9LkTsc/pexels-monstera-production-7249399.jpg',
+  'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
+  'https://images.pexels.com/photos/3757955/pexels-photo-3757955.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
+  'https://images.pexels.com/photos/7690135/pexels-photo-7690135.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
+  'https://images.pexels.com/photos/3998397/pexels-photo-3998397.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2',
 ];
 
 const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
@@ -35,15 +35,13 @@ const Hero: React.FC<HeroProps> = ({ onBookNowClick }) => {
   return (
     <section className="relative h-[70vh] md:h-screen overflow-hidden">
       {/* Image Slider Container */}
-      <div
-        className="flex h-full transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentImageIndex * 100}%)`, zIndex: 1 }}
-      >
-        {heroImages.map((image) => (
+      <div className="absolute inset-0 w-full h-full">
+        {heroImages.map((image, index) => (
           <div
             key={image}
-            className="flex-shrink-0 w-full h-full bg-cover bg-center"
+            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
             style={{ backgroundImage: `url(${image})` }}
+            aria-hidden={index !== currentImageIndex}
             aria-label="Hero background image"
             role="img"
           />
